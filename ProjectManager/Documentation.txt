@@ -8,3 +8,4 @@
 Bottleneck:
 
 #1
+In CmdsFactory.BuildCommand() there is a pointless while and for loops.

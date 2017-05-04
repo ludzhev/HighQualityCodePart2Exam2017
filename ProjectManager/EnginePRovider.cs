@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProjectManager
 {
-    class EnginePRovider
+    public class EnginePRovider
     {
         public Engine eng;
 

@@ -1,7 +1,7 @@
 ﻿using Bytes2you.Validation;
+using System;
 using ProjectManager.Common.Exceptions;
 using ProjectManager.Common.Providers;
-using System;
 
 namespace ProjectManager.Models
 {

@@ -3,27 +3,18 @@ using ProjectManager.Commands;
 using System;
 using System.Linq;
 
-
-
 namespace ProjectManager.Common
 {
-    class CmdCPU
+    public class CmdCPU
     {
-        private CmdsFactory fac;
-
-
-
-
-
-
-
-
-        public CmdCPU(CmdsFactory fac)
+        private CommandsFactory fac;
+        
+        public CmdCPU(CommandsFactory fac)
         {
             this.fac = fac;
         }
 
-        public string process(string cl)
+        public string Process(string cl)
         {
             if (string.IsNullOrWhiteSpace(cl))
             {
@@ -31,13 +22,7 @@ namespace ProjectManager.Common
             }
 
             var command = this.fac.CreateCommandFromString(cl.Split(' ')[0]);
-            return command.Execute(cl.Split(' ').Skip(1).ToList()); ;
-
-            // don't remove, code will blow up
-            if(cl.Split(' ').Count() > 10)
-            {
-                throw new ArgumentException();
-            }
+            return command.Execute(cl.Split(' ').Skip(1).ToList());
         }
     }
 }
