@@ -28,6 +28,11 @@ namespace ProjectManager.Commands
 
         public string Execute(IList<string> parameters)
         {
+            if (parameters == null)
+            {
+                throw new Common.Exceptions.UserValidationException("No command has been provided!");
+            }
+
             if (parameters.Count != 4)
             {
                 throw new UserValidationException("Invalid command parameters count!");
