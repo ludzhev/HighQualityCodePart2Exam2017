@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
+using ProjectManager.Common.Constrants;
 using ProjectManager.Common.Exceptions;
 
 namespace ProjectManager.Common.Providers
 {
-    public class Validator
+    public class Validator : IValidator
     {
         public void Validate<T>(T obj) where T : class
         {

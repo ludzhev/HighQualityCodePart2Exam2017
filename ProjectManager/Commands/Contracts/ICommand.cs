@@ -4,6 +4,6 @@ namespace ProjectManager.Commands.Contracts
 {
     public interface ICommand
     {
-        string Execute(List<string> parameters);
+        string Execute(IList<string> parameters);
     }
 }

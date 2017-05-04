@@ -1,24 +1,28 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Bytes2you.Validation;
 using ProjectManager.Commands.Contracts;
 using ProjectManager.Common.Exceptions;
 using ProjectManager.Data;
-using ProjectManager.Models;
+using ProjectManager.Models.Contracts;
 
 namespace ProjectManager.Commands
 {
     public class CreateUserCommand : ICommand
     {
-        private readonly Database dataBase;
-        private readonly ModelsFactory modelsFactory;
+        private readonly IDatabase dataBase;
+        private readonly IModelsFactory modelsFactory;
 
-        public CreateUserCommand(Database dataBase, ModelsFactory modelsFactory)
+        public CreateUserCommand(IDatabase dataBase, IModelsFactory modelsFactory)
         {
+            Guard.WhenArgument(dataBase, "CreateUserCommand Database").IsNull().Throw();
+            Guard.WhenArgument(modelsFactory, "CreateUserCommand ModelsFactory").IsNull().Throw();
+
             this.dataBase = dataBase;
             this.modelsFactory = modelsFactory;
         }
-
-        public string Execute(List<string> parameters)
+    
+        public string Execute(IList<string> parameters)
         {
             if (parameters.Count != 3)
             {

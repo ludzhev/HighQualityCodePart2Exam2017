@@ -2,27 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
+using ProjectManager.Models.Contracts;
+using ProjectManager.Models.Enums;
 
 namespace ProjectManager.Models
 {
     public class Project : IProject
     {
-        [Required(ErrorMessage = "Project Name is required!")]
-        public string Name { get; set; }
-
-        [Range(typeof(DateTime), "1800-1-1", "2017-1-1", ErrorMessage = "Project StartingDate must be between 1800-1-1 and 2017-1-1!")]
-        public DateTime StartingDate { get; set; }
-
-        [Range(typeof(DateTime), "2018-1-1", "2144-1-1", ErrorMessage = "Project EndingDate must be between 2018-1-1 and 2144-1-1!")]
-        public DateTime EndingDate { get; set; } 
-               
-        public string State { get; set; }
-
-        public virtual List<User> Users { get; set; }
-
-        public virtual List<Task> Tasks { get; set; }
-
-        public Project(string name, DateTime startingDate, DateTime endingDate, string state)
+        public Project(string name, DateTime startingDate, DateTime endingDate, ProjectState state)
         {
             this.Name = name;
             this.StartingDate = startingDate;
@@ -31,6 +18,22 @@ namespace ProjectManager.Models
             this.Users = new List<User>();
             this.Tasks = new List<Task>();
         }
+
+        [Required(ErrorMessage = "Project Name is required!")]
+        public string Name { get; set; }
+
+        [Range(typeof(DateTime), "1800-1-1", "2017-1-1", ErrorMessage = "Project StartingDate must be between 1800-1-1 and 2017-1-1!")]
+        public DateTime StartingDate { get; set; }
+
+        [Range(typeof(DateTime), "2018-1-1", "2144-1-1", ErrorMessage = "Project EndingDate must be between 2018-1-1 and 2144-1-1!")]
+        public DateTime EndingDate { get; set; }
+
+        [Range(typeof(ProjectState), "0", "1", ErrorMessage = "Project State can be either Active or Inactive!")]
+        public ProjectState State { get; set; }
+
+        public virtual List<User> Users { get; }
+
+        public virtual List<Task> Tasks { get; }
 
         public override string ToString()
         {
@@ -59,8 +62,5 @@ namespace ProjectManager.Models
 
             return builder.ToString();
         }
-
     }
 }
-
-
